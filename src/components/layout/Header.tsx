@@ -30,6 +30,7 @@ const Header = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const currentUser = mockUsers[0]; // Mock current user
+  const isAuthenticated = false; // Mock authentication state - set to false to show login/signup
 
   const navItems = [
     { path: '/', label: 'Browse', icon: Home },
@@ -85,66 +86,80 @@ const Header = () => {
 
         {/* Right side actions */}
         <div className="flex items-center space-x-2">
-          {/* Add Item Button */}
-          <Button variant="trade" size="sm" className="hidden sm:flex">
-            <Plus className="h-4 w-4" />
-            Add Item
-          </Button>
+          {isAuthenticated ? (
+            <>
+              {/* Add Item Button */}
+              <Button variant="trade" size="sm" className="hidden sm:flex">
+                <Plus className="h-4 w-4" />
+                Add Item
+              </Button>
 
-          {/* Notifications */}
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-4 w-4" />
-            <div className="absolute -top-1 -right-1 h-3 w-3 bg-secondary rounded-full text-[10px] text-secondary-foreground flex items-center justify-center">
-              3
-            </div>
-          </Button>
-
-          {/* User Menu */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="flex items-center space-x-2 h-auto p-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage src={currentUser.image} />
-                  <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-                <div className="hidden sm:block text-left">
-                  <div className="text-sm font-medium">{currentUser.name}</div>
-                  <div className="flex items-center space-x-1">
-                    <Badge 
-                      variant="secondary" 
-                      className={`text-xs ${badgeInfo[currentUser.badge].color}`}
-                    >
-                      {badgeInfo[currentUser.badge].name}
-                    </Badge>
-                    <span className="text-xs text-muted-foreground">
-                      {currentUser.loyalty_points} pts
-                    </span>
-                  </div>
+              {/* Notifications */}
+              <Button variant="ghost" size="icon" className="relative">
+                <Bell className="h-4 w-4" />
+                <div className="absolute -top-1 -right-1 h-3 w-3 bg-secondary rounded-full text-[10px] text-secondary-foreground flex items-center justify-center">
+                  3
                 </div>
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Heart className="mr-2 h-4 w-4" />
-                <span>Favorites</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>Sign Out</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+
+              {/* User Menu */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center space-x-2 h-auto p-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={currentUser.image} />
+                      <AvatarFallback>{currentUser.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div className="hidden sm:block text-left">
+                      <div className="text-sm font-medium">{currentUser.name}</div>
+                      <div className="flex items-center space-x-1">
+                        <Badge 
+                          variant="secondary" 
+                          className={`text-xs ${badgeInfo[currentUser.badge].color}`}
+                        >
+                          {badgeInfo[currentUser.badge].name}
+                        </Badge>
+                        <span className="text-xs text-muted-foreground">
+                          {currentUser.loyalty_points} pts
+                        </span>
+                      </div>
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Heart className="mr-2 h-4 w-4" />
+                    <span>Favorites</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
+          ) : (
+            /* Login/Signup for unauthenticated users */
+            <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/login">Sign In</Link>
+              </Button>
+              <Button size="sm" asChild>
+                <Link to="/signup">Sign Up</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 
