@@ -24,8 +24,8 @@ import { Item, ItemCondition } from '@/lib/types';
 const Browse = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [selectedCondition, setSelectedCondition] = useState<ItemCondition | ''>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCondition, setSelectedCondition] = useState<ItemCondition | 'all'>('all');
   const [sortBy, setSortBy] = useState<'recent' | 'alphabetical' | 'distance'>('recent');
   const [showFilters, setShowFilters] = useState(false);
 
@@ -43,12 +43,12 @@ const Browse = () => {
     }
 
     // Filter by category
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'all') {
       items = items.filter(item => item.category === selectedCategory);
     }
 
     // Filter by condition
-    if (selectedCondition) {
+    if (selectedCondition && selectedCondition !== 'all') {
       items = items.filter(item => item.condition === selectedCondition);
     }
 
@@ -77,14 +77,14 @@ const Browse = () => {
 
   const clearFilters = () => {
     setSearchQuery('');
-    setSelectedCategory('');
-    setSelectedCondition('');
+    setSelectedCategory('all');
+    setSelectedCondition('all');
     setSortBy('recent');
   };
 
   const activeFilters = [
-    selectedCategory && `Category: ${selectedCategory}`,
-    selectedCondition && `Condition: ${selectedCondition}`,
+    selectedCategory && selectedCategory !== 'all' && `Category: ${selectedCategory}`,
+    selectedCondition && selectedCondition !== 'all' && `Condition: ${selectedCondition}`,
     searchQuery && `Search: "${searchQuery}"`,
     sortBy !== 'recent' && `Sort: ${sortBy}`
   ].filter(Boolean);
@@ -133,7 +133,7 @@ const Browse = () => {
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Categories</SelectItem>
+                <SelectItem value="all">All Categories</SelectItem>
                 {categories.map(category => (
                   <SelectItem key={category} value={category}>
                     {category}
@@ -143,12 +143,12 @@ const Browse = () => {
             </Select>
 
             {/* Condition Filter */}
-            <Select value={selectedCondition} onValueChange={(value) => setSelectedCondition(value as ItemCondition | '')}>
+            <Select value={selectedCondition} onValueChange={(value) => setSelectedCondition(value as ItemCondition | 'all')}>
               <SelectTrigger className="w-full lg:w-36">
                 <SelectValue placeholder="Condition" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Conditions</SelectItem>
+                <SelectItem value="all">All Conditions</SelectItem>
                 <SelectItem value="NEW">New</SelectItem>
                 <SelectItem value="GOOD">Good</SelectItem>
                 <SelectItem value="FAIR">Fair</SelectItem>
