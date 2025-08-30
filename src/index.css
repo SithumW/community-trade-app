@@ -2,41 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Swappo Design System - Trading & Community Focused
+All colors MUST be HSL. Promoting sustainability, trust, and community connection.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - clean and trustworthy */
+    --background: 0 0% 99%;
+    --foreground: 215 25% 15%;
 
+    /* Card system - elevated surfaces */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
+    /* Popover system */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Community Green (trust & sustainability) */
+    --primary: 150 60% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-muted: 150 30% 85%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Warm Orange (community & warmth) */
+    --secondary: 25 85% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-muted: 25 60% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted tones */
+    --muted: 220 13% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Trustworthy Blue */
+    --accent: 210 70% 55%;
+    --accent-foreground: 0 0% 100%;
+    --accent-muted: 210 40% 90%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status colors */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 140 70% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 85% 55%;
+    --warning-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Interactive elements */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 150 60% 45%;
 
-    --radius: 0.5rem;
+    /* Design tokens */
+    --radius: 0.75rem;
+    
+    /* Trading specific colors */
+    --trade-pending: 40 85% 55%;
+    --trade-accepted: 140 70% 45%;
+    --trade-completed: 210 70% 55%;
+    --trade-cancelled: 0 75% 60%;
+    
+    /* Badge colors */
+    --badge-bronze: 25 75% 55%;
+    --badge-silver: 210 15% 75%;
+    --badge-gold: 45 90% 55%;
+    --badge-diamond: 200 80% 70%;
+    --badge-ruby: 340 85% 55%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(150 60% 45%), hsl(170 50% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(25 85% 60%), hsl(35 80% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(150 60% 45%) 0%, hsl(170 50% 50%) 50%, hsl(25 85% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 13% 98%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 25% 15% / 0.1), 0 2px 4px -1px hsl(215 25% 15% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215 25% 15% / 0.1), 0 4px 6px -2px hsl(215 25% 15% / 0.05);
+    --shadow-glow: 0 0 30px hsl(150 60% 45% / 0.3);
+    
+    /* Animations */
+    --animate-fade-in: fadeIn 0.3s ease-out;
+    --animate-slide-up: slideUp 0.4s ease-out;
+    --animate-scale: scale 0.2s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +103,53 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    /* Dark mode - maintaining the community feel */
+    --background: 215 25% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 215 25% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 215 25% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Primary adjustments for dark mode */
+    --primary: 150 50% 55%;
+    --primary-foreground: 215 25% 8%;
+    --primary-muted: 150 25% 20%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary adjustments */
+    --secondary: 25 70% 55%;
+    --secondary-foreground: 215 25% 8%;
+    --secondary-muted: 25 30% 15%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 15%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 210 60% 60%;
+    --accent-foreground: 215 25% 8%;
+    --accent-muted: 210 30% 20%;
 
-    --destructive: 0 62.8% 30.6%;
+    /* Status colors for dark mode */
+    --destructive: 0 65% 55%;
     --destructive-foreground: 210 40% 98%;
+    --success: 140 60% 50%;
+    --success-foreground: 215 25% 8%;
+    --warning: 40 75% 60%;
+    --warning-foreground: 215 25% 8%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 215 25% 20%;
+    --input: 215 25% 18%;
+    --ring: 150 50% 55%;
+    
+    /* Dark mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(150 50% 55%), hsl(170 45% 50%));
+    --gradient-secondary: linear-gradient(135deg, hsl(25 70% 55%), hsl(35 65% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(150 50% 55%) 0%, hsl(170 45% 50%) 50%, hsl(25 70% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(215 25% 10%), hsl(215 25% 12%));
+    
+    /* Dark shadows with colored glow */
+    --shadow-glow: 0 0 30px hsl(150 50% 55% / 0.4);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +167,94 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Custom scrollbar for webkit browsers */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+}
+
+@layer components {
+  /* Trading status indicators */
+  .status-pending {
+    @apply bg-yellow-500/10 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-800;
+  }
+  
+  .status-accepted {
+    @apply bg-green-500/10 text-green-700 border-green-200 dark:bg-green-500/20 dark:text-green-300 dark:border-green-800;
+  }
+  
+  .status-completed {
+    @apply bg-blue-500/10 text-blue-700 border-blue-200 dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-800;
+  }
+  
+  .status-cancelled {
+    @apply bg-red-500/10 text-red-700 border-red-200 dark:bg-red-500/20 dark:text-red-300 dark:border-red-800;
+  }
+  
+  /* Badge styles */
+  .badge-bronze {
+    @apply bg-orange-500/10 text-orange-700 border-orange-200 dark:bg-orange-500/20 dark:text-orange-300 dark:border-orange-800;
+  }
+  
+  .badge-silver {
+    @apply bg-gray-500/10 text-gray-700 border-gray-200 dark:bg-gray-500/20 dark:text-gray-300 dark:border-gray-800;
+  }
+  
+  .badge-gold {
+    @apply bg-yellow-500/10 text-yellow-700 border-yellow-200 dark:bg-yellow-500/20 dark:text-yellow-300 dark:border-yellow-800;
+  }
+  
+  .badge-diamond {
+    @apply bg-cyan-500/10 text-cyan-700 border-cyan-200 dark:bg-cyan-500/20 dark:text-cyan-300 dark:border-cyan-800;
+  }
+  
+  .badge-ruby {
+    @apply bg-rose-500/10 text-rose-700 border-rose-200 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-800;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale {
+  from {
+    transform: scale(0.95);
+  }
+  to {
+    transform: scale(1);
   }
 }
